@@ -61,6 +61,7 @@ if __name__ == '__main__':
                         pass
                     a_zip.close()
                     copy(path.join(root, file), "Repo/{}/Moudle.zip".format(dictProperties["id"]))
+                    rmtree(path.join(root, file))
                 # https: // magisk.xiaowine.cc / Repo /
                 except KeyError:
                     print("模块 {} 无module.prop".format(file))
