@@ -44,9 +44,7 @@ if __name__ == '__main__':
                 print("处理模块 {} ".format(file))
                 a_zip = ZipFile(path.join(root, file))
                 try:
-                    module_prop = a_zip.read("module.prop").decode('utf-8')
-                    with open("module.prop", "w") as f:
-                        f.write(module_prop)
+                    a_zip.extract("module.prop")
                     dictProperties = Properties("module.prop").get_properties()
                     if not path.isdir("Repo/{}".format(dictProperties["id"])):
                         b = {"id": dictProperties["id"], "last_update": 0,
