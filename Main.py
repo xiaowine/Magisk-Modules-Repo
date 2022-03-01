@@ -50,8 +50,10 @@ if __name__ == '__main__':
                     dictProperties = Properties("module.prop").get_properties()
                     if not path.isdir("Repo/{}".format(dictProperties["id"])):
                         b = {"id": dictProperties["id"], "last_update": 0,
-                             "prop_url": "https://xiaowine.github.io/Magisk-Modules-Repo/Repo/{}/Magisk.zip".format(dictProperties["id"]),
-                             "zip_url": "https://xiaowine.github.io/Magisk-Modules-Repo/Repo/{}/module.prop".format(dictProperties["id"]),
+                             "prop_url": "https://xiaowine.github.io/Magisk-Modules-Repo/Repo/{}/module.prop".format(
+                                 dictProperties["id"]),
+                             "zip_url": "https://xiaowine.github.io/Magisk-Modules-Repo/Repo/{}/{}.zip".format(
+                                 dictProperties["id"], dictProperties["id"]),
                              "notes_url": ""}
                         jsons["modules"].append(b)
                         handle()
@@ -60,8 +62,8 @@ if __name__ == '__main__':
                         handle()
                         pass
                     a_zip.close()
-                    copy(path.join(root, file), "Repo/{}/Moudle.zip".format(dictProperties["id"]))
-                    rmtree(path.join(root, file))
+                    copy(path.join(root, file), "Repo/{}/{}.zip".format(dictProperties["id"], dictProperties["id"]))
+                    # rmtree(path.join(root, file))
                 # https: // magisk.xiaowine.cc / Repo /
                 except KeyError:
                     print("模块 {} 无module.prop".format(file))
