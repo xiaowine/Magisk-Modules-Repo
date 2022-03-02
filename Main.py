@@ -15,28 +15,28 @@ def handle():
         print("Repo/{} 创建失败".format(dictProperties["id"]))
 
 
+def make_dirs(dir_name):
+    if mkdir(dir_name) is None:
+        print(f"{dir_name}创建成功")
+    else:
+        print(f"{dir_name}创建失败")
+
+
 if __name__ == '__main__':
     if not path.isdir("Repo"):
         print("Repo文件夹不存在")
-        if mkdir("Repo") is None:
-            print("Repo创建成功")
-        else:
-            print("Repo创建失败")
-        pass
+        make_dirs("Repo")
     else:
         print("Repo已存在")
 
     if not path.isdir("UnHandled"):
         print("UnHandled文件夹不存在")
-        if mkdir("UnHandled") is None:
-            print("UnHandled创建成功")
-        else:
-            print("UnHandled创建失败")
-        print("无未处理模块")
+        make_dirs("UnHandled")
         exit(0)
     else:
         print("UnHandled已存在")
         print("开始处理模块")
+
         with open("index.json", "r") as fs:
             jsons = hjson.loads(fs.read())
         for root, dirs, files in walk("UnHandled"):
